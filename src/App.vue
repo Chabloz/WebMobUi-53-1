@@ -13,21 +13,21 @@
   //   return temperatureSi.value.toFixed(2);
   // });
 
-  const tempKelvin = computed({
+  const tempKelvin = defineModel('kelvin', {
     get: () => {
-      return temperatureSi.value.toFixed(2);
+      return  Number(temperatureSi.value.toFixed(2));
     },
     set: (val) => {
-      temperatureSi.value = val;
+      temperatureSi.value = Number(val);
     }
   });
 
-  const tempCelcius = computed({
+  const tempCelcius = defineModel('celcius', {
     get: () => {
-      return (temperatureSi.value - 273.15).toFixed(2);
+      return Number((temperatureSi.value - 273.15).toFixed(2));
     },
     set: (val) => {
-      temperatureSi.value = val + 273.15;
+      temperatureSi.value = Number(val) + 273.15;
     }
   });
 
