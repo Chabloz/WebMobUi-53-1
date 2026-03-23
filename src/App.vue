@@ -1,18 +1,59 @@
 <script setup>
-  import { ref, watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import TheHeader from './components/TheHeader.vue';
+  import BaseInputTemperature from './components/BaseInputTemperature.vue';
 
-  const username = defineModel('username');
+  const temperatureSi = ref(0); // Kelvin
 
-  setTimeout(() => {
-    username.value = 'new username';
-  }, 5000);
+  // setTimeout(() => {
+  //   temperatureSi.value = 200.876237864;
+  // }, 5000)
 
-  watch(username, (newValue) => {
-     if (newValue === 'admin') {
-        username.value = '';
-     }
+  // const tempKelvin = computed(() => {
+  //   return temperatureSi.value.toFixed(2);
+  // });
+
+  const tempKelvin = computed({
+    get: () => {
+      return temperatureSi.value.toFixed(2);
+    },
+    set: (val) => {
+      temperatureSi.value = val;
+    }
   });
+
+  const tempCelcius = computed({
+    get: () => {
+      return (temperatureSi.value - 273.15).toFixed(2);
+    },
+    set: (val) => {
+      temperatureSi.value = val + 273.15;
+    }
+  });
+
+  // setTimeout(() => {
+  //   tempCelcius.value = 300;
+  // }, 7000)
+
+  tempKelvin.value = 10;
+  // seulement cette deuxième affectation sera prise en compte pour la réactivité (à la fin du tick actuel)
+  tempKelvin.value = 20;
+
+
+
+
+
+  // const username = defineModel('username');
+
+  // setTimeout(() => {
+  //   username.value = 'new username';
+  // }, 5000);
+
+  // watch(username, (newValue) => {
+  //    if (newValue === 'admin') {
+  //       username.value = '';
+  //    }
+  // });
 
   // const age = ref(0);
   // age.value += 2;
@@ -24,13 +65,19 @@
 </script>
 
 <template>
-  <h1>main title</h1>
-  <TheHeader />
+  <TheHeader title="IM WebMobUi"/>
+  <div>Temp SI: {{  temperatureSi }}</div>
+  <div>Temp Kelvin: {{  tempKelvin }}</div>
+  <div>Temp °C: {{  tempCelcius }}</div>
 
-  <div>
+  <BaseInputTemperature v-model="tempCelcius" label="°C"/>
+  <BaseInputTemperature v-model="tempKelvin" label="K"/>
+  <!-- <BaseInputTemperature v-model="tempFarenheit" label="°F"/> -->
+
+  <!-- <div>
     <input v-model="username" type="email">
     {{  username }}
-  </div>
+  </div> -->
   <!-- <the-place>the place</the-place> -->
   <!-- <div>{{ age }}</div> -->
 </template>
