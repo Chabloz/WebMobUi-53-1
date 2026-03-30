@@ -13,7 +13,6 @@ import { useFetch } from '../composables/useFetch';
   const scheduleSorted = computed(() => {
     if (!schedulFiltered.value) return [];
     const sorted = schedulFiltered.value.toSorted((c1, c2) => {
-      console.log(c1, c2);
       return c1.start.localeCompare(c2.start);
     })
     return sorted;
