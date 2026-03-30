@@ -7,7 +7,7 @@
 
 <template>
   <label>{{  label }}</label>
-  <input v-model="model">
+  <input v-model="model" type="number">
 </template>
 
 <style scoped>
