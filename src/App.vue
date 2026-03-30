@@ -3,10 +3,12 @@
   import Home from './pages/Home.vue';
   import Temperature from './pages/Temperature.vue';
   import { useHashRoute } from './composables/useHashRoute';
+import Schedule from './pages/Schedule.vue';
 
   const routes = [
     { hash: '#temperature', component: Temperature},
     { hash: '#home', component: Home},
+    { hash: '#schedule', component: Schedule},
   ];
   const { currentComponent } = useHashRoute(routes);
 </script>
