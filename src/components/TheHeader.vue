@@ -1,13 +1,10 @@
 <script setup>
   import { ref } from 'vue';
   import BaseButton from './BaseButton.vue';
-  const label = ref('dark');
+  import { useJsonStorage } from '../composables/useJsonStorage';
 
-  defineProps({
-    title: {
-      type: String,
-    }
-  });
+  const { val : label } = useJsonStorage('theme', 'dark');
+  const { val : fontsize } = useJsonStorage('fontsize', '1rem');
 
   function toggleTheme() {
     label.value = label.value === 'dark' ? 'light' : 'dark';
@@ -16,13 +13,23 @@
 
 <template>
   <header>
-    <h1>{{ title }}</h1>
+    <h1><slot></slot></h1>
     <BaseButton @click="toggleTheme" :label="label" type="primary"/>
   </header>
 </template>
 
 <style scoped>
   h1 {
-    color: red;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--color-primary);
   }
 </style>

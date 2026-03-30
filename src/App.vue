@@ -3,59 +3,38 @@
   import Home from './pages/Home.vue';
   import Temperature from './pages/Temperature.vue';
   import { useHashRoute } from './composables/useHashRoute';
+import BaseButton from './components/BaseButton.vue';
 
   const { currentPage } = useHashRoute();
   console.log(currentPage.value);
-
-
-
-
-  // setTimeout(() => {
-  //   tempCelcius.value = 300;
-  // }, 7000)
-
-  // tempKelvin.value = 10;
-  // seulement cette deuxième affectation sera prise en compte pour la réactivité (à la fin du tick actuel)
-  // tempKelvin.value = 20;
-
-  // const username = defineModel('username');
-
-  // setTimeout(() => {
-  //   username.value = 'new username';
-  // }, 5000);
-
-  // watch(username, (newValue) => {
-  //    if (newValue === 'admin') {
-  //       username.value = '';
-  //    }
-  // });
-
-  // const age = ref(0);
-  // age.value += 2;
-  // console.log(age.value);
-  // setTimeout(() => {
-  //   age.value += 2;
-  //   console.log(age.value);
-  // }, 6000);
-
 </script>
 
 <template>
-  <TheHeader title="IM WebMobUi"/>
-  <Home v-if="currentPage === 'home'"/>
-  <Temperature v-if="currentPage === 'temperature'"/>
-
-
-  <!-- <BaseInputTemperature v-model="tempFarenheit" label="°F"/> -->
-
-  <!-- <div>
-    <input v-model="username" type="email">
-    {{  username }}
-  </div> -->
-  <!-- <the-place>the place</the-place> -->
-  <!-- <div>{{ age }}</div> -->
+  <TheHeader>
+    I<span>M</span> WebMobUi
+  </TheHeader>
+  <main>
+    <!-- <component :is="currentPage" /> -->
+     <Temperature id="temperature-page" class="page" v-if="currentPage === 'Temperature'"/>
+  </main>
 </template>
 
 <style>
-
+:root {
+    --color-primary: #6f42c1;
+    --color-secondary: #0d6efd;
+    --color-success: #198754;
+    --color-danger: #dc3545;
+    --color-warning: #ffc107;
+    --color-info: #0dcaf0;
+    --color-bg: #fff;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg);
+  }
+  main {
+    padding: 1rem;
+  }
 </style>
