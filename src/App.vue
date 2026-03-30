@@ -3,10 +3,12 @@
   import Home from './pages/Home.vue';
   import Temperature from './pages/Temperature.vue';
   import { useHashRoute } from './composables/useHashRoute';
-import BaseButton from './components/BaseButton.vue';
 
-  const { currentPage } = useHashRoute();
-  console.log(currentPage.value);
+  const routes = [
+    { hash: '#temperature', component: Temperature},
+    { hash: '#home', component: Home},
+  ];
+  const { currentComponent } = useHashRoute(routes);
 </script>
 
 <template>
@@ -14,8 +16,7 @@ import BaseButton from './components/BaseButton.vue';
     I<span>M</span> WebMobUi
   </TheHeader>
   <main>
-    <!-- <component :is="currentPage" /> -->
-     <Temperature id="temperature-page" class="page" v-if="currentPage === 'Temperature'"/>
+    <component :is="currentComponent" />
   </main>
 </template>
 
