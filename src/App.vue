@@ -3,7 +3,12 @@
   import Home from './pages/Home.vue';
   import Temperature from './pages/Temperature.vue';
   import { useHashRoute } from './composables/useHashRoute';
-import Schedule from './pages/Schedule.vue';
+  import Schedule from './pages/Schedule.vue';
+  import { test, setTest } from './store/schedule';
+
+  setTimeout(() => {
+    setTest("updated");
+  }, 3000);
 
   const routes = [
     { hash: '#temperature', component: Temperature},

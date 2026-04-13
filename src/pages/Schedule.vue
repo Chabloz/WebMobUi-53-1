@@ -1,8 +1,9 @@
 <script setup>
   import { compile, computed } from 'vue';
-import { useFetch } from '../composables/useFetch';
+  import { useFetch } from '../composables/useFetch';
+  import { test } from '../store/schedule';
 
-  const {data, error, loading} = useFetch('https://chabloz.eu/files/horaires/all');
+  const {data, error, loading} = useFetch(import.meta.env.VITE_API_SCHEDULE);
 
   const filter = defineModel();
 
@@ -22,6 +23,7 @@ import { useFetch } from '../composables/useFetch';
 <template>
   <div>
     <h2>Horaires</h2>
+    <h3>{{  test }}</h3>
     <div v-if="loading">
       Chargement en cours
     </div>
