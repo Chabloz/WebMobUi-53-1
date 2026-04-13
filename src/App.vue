@@ -4,7 +4,7 @@
   import Temperature from './pages/Temperature.vue';
   import { useHashRoute } from './composables/useHashRoute';
   import Schedule from './pages/Schedule.vue';
-  import { test, setTest } from './store/schedule';
+  import { setTest } from './store/schedule';
 
   setTimeout(() => {
     setTest("updated");
